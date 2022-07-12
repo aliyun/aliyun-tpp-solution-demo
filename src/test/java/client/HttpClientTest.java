@@ -37,7 +37,7 @@ public class HttpClientTest {
 
     @Test
     public void test() throws Exception{
-        String response = httpClient.get("https://abc123.example.com/search?q=iphone", StandardCharsets.UTF_8,null);
+        String response = httpClient.get("http://www.aliyun.com/", StandardCharsets.UTF_8,null);
         assert response != null;
 
     }

@@ -9,7 +9,6 @@ import com.aliyun.tpp.solution.protocol.SolutionProperties;
 import com.aliyun.tpp.solution.protocol.recommend.RecommendResult;
 import com.aliyun.tpp.solution.protocol.recommend.RecommendResultSupport;
 import com.aliyun.tpp.solution.protocol.recommend.RecommendSolution;
-import com.google.common.collect.Lists;
 import com.taobao.abfs.client.core.PgSessionCtx;
 import com.taobao.abfs.client.model.AtomicQuery;
 import com.taobao.abfs.client.model.KeyList;
@@ -55,7 +54,7 @@ public class ABFSSolution implements RecommendSolution {
         AtomicQuery atomicQuery = AtomicQuery.builder()
                 .table("tpp_rec_demo_user")
                 .keyLists(Arrays.asList(keyList))
-                .fields(Lists.newArrayList("gender", "age_level", "pay_level", "user_tag", "city"))   // 设置返回字段子句，只有设置的这些字段会序列化回到客户端，默认全返回
+                .fields(Arrays.asList("gender", "age_level", "pay_level", "user_tag", "city"))   // 设置返回字段子句，只有设置的这些字段会序列化回到客户端，默认全返回
                 .filter("is_cap=1")    // 设置过滤子句，默认无过滤
                 .orderby("+age_level;-pay_level") // 设置orderby子句，默认无排序
                 .build();

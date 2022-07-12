@@ -44,6 +44,7 @@ import java.util.List;
  * <p>
  * comment:一个推荐方案的完整demo
  * 注意：这里只是个例子，不对您的业务效果负责，请根据自己的需求改造
+ * <p>
  *
  * 从真实的业务改编，如有雷同实属巧合
  * match：BE和redis(x2i)
@@ -67,6 +68,7 @@ public class DemoSolution implements RecommendSolution {
         redisConfig.setTimeout(3000);
         redisConfig.setMaxIdleConnectionCount(16);
         redisConfig.setMaxTotalConnectionCount(64);
+        redisConfig.setDbIndex(0);
         RedisConfig i2iConfig = redisConfig, hotConfig = redisConfig, triggerConfig = redisConfig;
         try {
             //i2i
@@ -127,8 +129,12 @@ public class DemoSolution implements RecommendSolution {
 
     @Override
     public void destroy(SolutionProperties solutionProperties) {
-        recommendPipeline.destroy();
-        defaultCacheResult.destroy();
+        if (recommendPipeline != null) {
+            recommendPipeline.destroy();
+        }
+        if (defaultCacheResult != null) {
+            defaultCacheResult.destroy();
+        }
     }
 
     @Override

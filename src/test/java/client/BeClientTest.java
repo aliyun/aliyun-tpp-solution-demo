@@ -32,7 +32,7 @@ public class BeClientTest {
     public void before() {
         BeConfig beConfig = new BeConfig();
         beConfig.setPassword("tpp*****");
-        beConfig.setUsername("tppdemo");
+        beConfig.setUsername("tppuser");
         beConfig.setDomain("aime-cn-0ju*********.aime.aliyuncs.com");
         beClient = ServiceProxyHolder.getService(beConfig, ServiceLoaderProvider.getSuperLoaderEasy(BeClient.class));
         beClient.init();

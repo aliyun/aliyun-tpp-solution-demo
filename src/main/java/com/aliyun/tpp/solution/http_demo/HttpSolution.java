@@ -4,7 +4,6 @@ import com.aliyun.tpp.service.http.HttpClient;
 import com.aliyun.tpp.service.http.HttpConfig;
 import com.aliyun.tpp.service.inner.ServiceLoaderProvider;
 import com.aliyun.tpp.service.proxy.ServiceProxyHolder;
-import com.aliyun.tpp.solution.predict_demo.PredictSolution;
 import com.aliyun.tpp.solution.protocol.SolutionContext;
 import com.aliyun.tpp.solution.protocol.SolutionProperties;
 import com.aliyun.tpp.solution.protocol.recommend.RecommendResult;
@@ -21,7 +20,7 @@ import java.util.Arrays;
  * comment:http调用示例，场景监控页面可以收集http调用指标
  */
 public class HttpSolution implements RecommendSolution {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PredictSolution.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpSolution.class);
 
     private HttpClient client;
 
@@ -47,9 +46,8 @@ public class HttpSolution implements RecommendSolution {
     @Override
     public RecommendResult recommend(SolutionContext context) throws Exception {
         RecommendResult result = new RecommendResultSupport();
-        String uri = "http://s.taobao.com/search?q=iphone";
         try {
-            String response = client.get(uri, StandardCharsets.UTF_8, null);
+            String response = client.get("http://10.128.0.14/ok/say", StandardCharsets.UTF_8, null);
             if (response == null || response.isEmpty()){
                 result.setEmpty(true);//标记空结果，会展示在场景->日志分析->空结果
             }else {

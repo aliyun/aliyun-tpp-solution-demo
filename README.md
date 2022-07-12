@@ -1,5 +1,4 @@
 # aliyun-tpp-solution-demo 推荐方案的demo
-
 包含多个demo，可以直接修改使用，上线前请充分测试，如有雷同实属巧合。
 
 ## 环境
@@ -15,6 +14,7 @@
       * ABFS使用demo
       * BE使用demo
       * HTTP使用demo
+      * dubbo使用demo
       * Predict使用demo
       * Redis使用demo
       * hello最简单的demo
@@ -49,7 +49,7 @@
 <dependency>
 <groupId>com.aliyun.tpp</groupId>
 <artifactId>ai-service-sdk</artifactId>
-<version>1.0</version>
+<version>1.1</version>
 </dependency>
 比如：abfs、be、eas、redis之类的
 
@@ -58,7 +58,7 @@
 <dependency>
 <groupId>com.aliyun.tpp</groupId>
 <artifactId>ai-service-sdk-testing</artifactId>
-<version>1.0</version>
+<version>1.1</version>
 <scope>test</scope>
 </dependency>
 
@@ -118,8 +118,11 @@
 </activeProfiles>
 ```
 ### 连通redis
-* TPP调用时，将TPP实例使用的交换机网段添加到redis白名单，就能调通
-* 本地测试时，将本地ip添加到redis白名单，就能调通
+* TPP不允许调用公网，只能使用VPC地址调用，将TPP实例使用的交换机网段添加到redis白名单
+* * 本地测试可以使用公网地址调用，但用完最好关闭，以免出现安全问题
 ### 连通pai-eas
+* TPP不允许调用公网，只能使用VPC地址调用
+* 本地测试可以使用公网地址调用，但用完最好关闭，以免出现安全问题
+### 连通dubbo
 * TPP不允许调用公网，只能使用VPC地址调用
 * 本地测试可以使用公网地址调用，但用完最好关闭，以免出现安全问题
